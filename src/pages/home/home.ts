@@ -11,7 +11,7 @@ export class HomePage {
   horaEntrada = moment('0830','hhmm').format('HH:mm');
   horaAlmoco = moment('1200','hhmm').format('HH:mm');
   horaRetorno = moment('1300','hhmm').format('HH:mm');
-  horaSaida = moment('1830','hhmm').format('HH:mm');
+  horaSaida = moment('1848','hhmm').format('HH:mm');
 
   //TODO: colocar em um vetor e gerar 31 vezesou 23 vezes (?)
 
@@ -29,7 +29,7 @@ this.geraCalendario();
     this.horaAlmoco = moment(intervalo.toString(),'hhmm').format('HH:mm');
     intervalo = 1310 + Math.floor((Math.random() * 15) + 1);
     this.horaRetorno = moment(intervalo.toString(),'hhmm').format('HH:mm');
-    intervalo = 1810 + Math.floor((Math.random() * 15) + 1);
+    intervalo = 1830 + Math.floor((Math.random() * 15) + 1);
     this.horaSaida = moment(intervalo.toString(),'hhmm').format('HH:mm');
     //var splitar cada turno para pegar ver se fechou o total de 8:30
     var splice = this.horaEntrada.split(':');
@@ -39,14 +39,14 @@ this.geraCalendario();
     let dia = moment(turnoManha.replace(':',''),'hmm').add(turnoTarde.split(':')[1],'minutes').add(turnoTarde.split(':')[0],'hours').format('HH:mm');
     console.log('turnoManha ' + turnoManha);
     console.log('turnoTarde ' + turnoTarde);
-    if (dia > moment('830','hmm').format('HH:mm')){
+    if (dia > moment('848','hmm').format('HH:mm')){
         console.log('passou');
-        let passadoMinutos = moment(dia.replace(':',''),'hmm').subtract(30,'minutes').format('mm');
+        let passadoMinutos = moment(dia.replace(':',''),'hmm').subtract('48','minutes').format('mm');
         console.log('ópa ' + passadoMinutos);
         this.horaSaida = moment(this.horaSaida.replace(':',''),'hhmm').subtract(passadoMinutos,'minutes').format('HH:mm');
     }else{
       console.log('nao passou');
-      let faltou = moment('30','mm').subtract(dia.split(':')[1],'minutes').format('mm');
+      let faltou = moment('48','mm').subtract(dia.split(':')[1],'minutes').format('mm');
       console.log('faltou ' + faltou);
       this.horaSaida = moment(this.horaSaida.replace(':',''),'hhmm').add(faltou,'minutes').format('HH:mm');
     }
